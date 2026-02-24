@@ -60,3 +60,70 @@ function toggleStyle(id) {
         sectionCount.innerText = rejectedList.length;
     }
 }
+
+mainContainer.addEventListener('click', function (event) {
+    const target = event.target;
+    const card = target.closest('.job-card'); 
+
+    if (!card) return; 
+
+    if (target.classList.contains('btn-interview')) {
+        const company = card.querySelector('.company').innerText;
+        const position = card.querySelector('.position').innerText;
+        const location = card.querySelector('.location').innerText;
+        const type = card.querySelector('.type').innerText;
+        const salary = card.querySelector('.salary').innerText;
+        const description = card.querySelector('.description').innerText;
+
+        const badge = card.querySelector('.status-badge');
+        badge.innerText = 'Interview';
+        badge.className = 'status-badge bg-emerald-100 text-emerald-600 px-3 py-1 rounded text-xs font-bold uppercase tracking-wider';
+
+        const cardInfo = {
+            company, position, location, type, salary, description, status: 'Interview'
+        };
+
+        const exists = interviewList.find(item => item.company === cardInfo.company);
+        if (!exists) {
+            interviewList.push(cardInfo);
+        }
+
+        rejectedList = rejectedList.filter(item => item.company !== cardInfo.company);
+
+        if (currentStatus === 'rejected-filter-btn') {
+            renderRejected();
+            sectionCount.innerText = rejectedList.length;
+        }
+        calculateCount();
+    }
+
+    else if (target.classList.contains('btn-rejected')) {
+        const company = card.querySelector('.company').innerText;
+        const position = card.querySelector('.position').innerText;
+        const location = card.querySelector('.location').innerText;
+        const type = card.querySelector('.type').innerText;
+        const salary = card.querySelector('.salary').innerText;
+        const description = card.querySelector('.description').innerText;
+
+        const badge = card.querySelector('.status-badge');
+        badge.innerText = 'Rejected';
+        badge.className = 'status-badge bg-red-100 text-red-600 px-3 py-1 rounded text-xs font-bold uppercase tracking-wider';
+
+        const cardInfo = {
+            company, position, location, type, salary, description, status: 'Rejected'
+        };
+
+        const exists = rejectedList.find(item => item.company === cardInfo.company);
+        if (!exists) {
+            rejectedList.push(cardInfo);
+        }
+
+        interviewList = interviewList.filter(item => item.company !== cardInfo.company);
+
+        if (currentStatus === 'interview-filter-btn') {
+            renderInterview();
+            sectionCount.innerText = interviewList.length;
+        }
+        calculateCount();
+    }
+});
