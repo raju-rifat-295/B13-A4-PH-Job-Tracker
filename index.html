@@ -1,12 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job Application Tracker</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
+
 <body class="bg-gray-50 text-slate-800">
+    <header class="w-[90%] lg:w-[80%] mx-auto mt-8">
+        <h1 class="text-3xl font-bold text-slate-900 mb-6">Job Application Tracker</h1>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+            <div class="bg-white p-6 rounded-lg shadow-sm border border-slate-100">
+                <p class="text-slate-500 font-medium mb-1">Total</p>
+                <p id="total-count" class="text-3xl font-bold text-blue-600">0</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-sm border border-slate-100">
+                <p class="text-slate-500 font-medium mb-1">Interview</p>
+                <p id="interview-count" class="text-3xl font-bold text-emerald-500">0</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-sm border border-slate-100">
+                <p class="text-slate-500 font-medium mb-1">Rejected</p>
+                <p id="rejected-count" class="text-3xl font-bold text-red-500">0</p>
+            </div>
+        </div>
+    </header>
+
+    <hr class="border-slate-200 mb-8">
+
     <script src="script.js"></script>
 </body>
+
 </html>
