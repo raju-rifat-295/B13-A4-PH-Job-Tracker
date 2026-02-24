@@ -126,4 +126,18 @@ mainContainer.addEventListener('click', function (event) {
         }
         calculateCount();
     }
+
+    else if (target.closest('.btn-delete')) {
+        const companyName = card.querySelector('.company').innerText;
+        
+        card.remove();
+
+        interviewList = interviewList.filter(item => item.company !== companyName);
+        rejectedList = rejectedList.filter(item => item.company !== companyName);
+
+        if (currentStatus === 'interview-filter-btn') renderInterview();
+        if (currentStatus === 'rejected-filter-btn') renderRejected();
+
+        calculateCount();
+    }
 });
